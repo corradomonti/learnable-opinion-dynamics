@@ -15,13 +15,13 @@ Here you will find instructions about (i) using the algorithm we presented and i
 
 ## Model implementation
 
-In order to use our model, we provide our implementation in `src/model`. To use it in your preferred environment, clone this repo, install the dependencies, and install our model:
+In order to use our model, we provide our implementation in `src/model`. To install it, clone this repo, install the dependencies, and install our model:
 
 ```
 git clone https://github.com/corradomonti/learnable-opinion-dynamics.git
 cd learnable-opinion-dynamics
 pip install -r requirements.txt
-pip install src/
+pip install src
 ```
 
 Then you can import it into Python with:
@@ -30,7 +30,7 @@ Then you can import it into Python with:
 >>> from model import learn_opinion_dynamics
 ```
 
-Check its arguments with:
+Check its documentation with:
 
 ```
 >>> help(learn_opinion_dynamics)

@@ -1,3 +1,5 @@
+""" The Learnable Opinion Dynamics generative model, implemented in Tensorflow. """
+
 import numpy as np
 import tensorflow as tf
 

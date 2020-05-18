@@ -1,3 +1,5 @@
+""" Internal data representation formats for temporal graphs. """
+
 import numpy as np
 
 from collections import defaultdict

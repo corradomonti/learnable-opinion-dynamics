@@ -1,3 +1,5 @@
+""" The inference algorithm for learnable opinion dynamics. """
+
 from .evaluate import evaluate_model
 from .graph import Graph
 from .tfmodel import build_tf_model
@@ -38,7 +40,7 @@ def em_step(graph, node_features, signs_until_t, Q, t, x_0=None, w=None, sigma=N
         learning_rate_link=0.0001, learning_rate_feature=0.001, threshold=5E-4, max_iter=1000,
         sigma_prior_coefficient=1, verbose=True,
         **hyperparameters):
-    """ A singe EM step to find (or refine) opinions and signs for a single time step.
+    """ EM step to find (or refine) opinions and signs for **a single** time step.
 
     Args:
         graph (Graph): The interaction graph, as an object of class `Graph` defined in `graph.py`.
@@ -58,15 +60,17 @@ def em_step(graph, node_features, signs_until_t, Q, t, x_0=None, w=None, sigma=N
         **hyperparameters: other keyword arguments are passed to `build_tf_model(..)` as hyperparameters.
 
     Returns:
-        x_0 (numpy array): Array of length N, in x_0[u] has the opinion of node u at time step 0.
-        w (numpy array): Array of length Q representing in w[a] the opinion of feature a.
-        sigma (numpy array): Array of length Q representing in w[a] the acceptance width of feature a.
-        X (numpy matrix): Matrix of size N x (t + 1) representing all the opinions over time.
-        signs (list): list containing the signs of each arc in this time step, in the same order
-            as the list of arcs given by `graph.get_interaction_graph(t)`.
-        num_iterations (int): number of iterations before convergence.
-        evaluation (dict): evaluation metrics: we run in-sample evaluation to measure the
-            training error.
+        Tuple:
+        - x_0 (numpy array): Array of length N, in x_0[u] has the opinion of node u at time step 0.
+        - w (numpy array): Array of length Q representing in w[a] the opinion of feature a.
+        - sigma (numpy array): Array of length Q representing in w[a] the acceptance width of feature a.
+        - X (numpy matrix): Matrix of size N x (t + 1) representing all the opinions over time.
+        - signs (list): list containing the signs of each arc in this time step, in the same order
+          as the list of arcs given by `graph.get_interaction_graph(t)`.
+        - num_iterations (int): number of iterations before convergence.
+        - evaluation (dict): evaluation metrics: we run in-sample evaluation to measure the
+          training error.
+    
     """    
     adj_indices, adj_values = graph.get_interaction_graph(t)
     
@@ -115,8 +119,9 @@ def em_step(graph, node_features, signs_until_t, Q, t, x_0=None, w=None, sigma=N
         
 def learn_opinion_dynamics(N, Q, T, u_v_t_weights, v_a_t_weights, num_epochs=2, num_restarts=1,
     alpha_clip_0=None, **hyperparameters):
-    """ Iterative EM algorithm to find opinions and signs, given a temporal interaction graph and
-        a temporal bipartite node-feature graph.
+    """
+    Iterative EM algorithm to find opinions and signs, given a temporal interaction graph and
+    a temporal bipartite node-feature graph.
 
     Args:
         N (int): Number of nodes.
@@ -139,14 +144,15 @@ def learn_opinion_dynamics(N, Q, T, u_v_t_weights, v_a_t_weights, num_epochs=2, 
         **hyperparameters: all other keyword arguments are passed to `em_step(..)` as hyperparameters.
 
     Returns:
-        X (numpy matrix): Matrix N x T representing the evolution of opinions. X[u, t] is the
+        Tuple:
+        - X (numpy matrix): Matrix N x T representing the evolution of opinions. X[u, t] is the
                  opinion of u at time t.
-        w (numpy array): Array of length Q representing in w[a] the opinion of feature a.
-        sigma (numpy array): Array of length Q representing in w[a] the acceptance width of feature a.
-        signs (list): list containing the signs of each arc. This is a list where each element
+        - w (numpy array): Array of length Q representing in w[a] the opinion of feature a.
+        - sigma (numpy array): Array of length Q representing in w[a] the acceptance width of feature a.
+        - signs (list): list containing the signs of each arc. This is a list where each element
                  corresponds to a specific time step; the t-th element of `signs` is composed by
                  tuples ((u, v), s) meaning that the arc u -> v at time t has sign s.
-        evaluations (list): list of T dictionaries, where each one is the evaluation metrics at t for the last epoch.
+        - evaluations (list): list of T dictionaries, where each one is the evaluation metrics at t for the last epoch.
     """
     interactions = Graph(u_v_t_weights, T=T, N=N)
     results = []

@@ -1,3 +1,5 @@
+""" Internal evaluation metrics. """
+
 import numpy as np
 import sklearn.metrics
 

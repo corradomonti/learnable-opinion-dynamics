@@ -94,19 +94,4 @@ def make_exogenous_evals(X, w, sigma, user2id, subreddit2id):
     non_fighting_median = np.median(interaction_scores.our_distance[non_fighting])
     exogen_evals['distance-fighting-median'] = fighting_median
     exogen_evals['distance-non-fighting-median'] = non_fighting_median
-
-    subreddit_scores = pd.DataFrame(data=[
-        (sub.decode(), np.nan, w[sub_id], sigma[sub_id])
-        for sub, sub_id in subreddit2id.items()
-    ], columns=('subreddit', 'production_score', 'w', 'sigma'))
-
-    subreddit_scores['one_minus_sigma'] = 1 - subreddit_scores.sigma
-    no_nan = ~ subreddit_scores.production_score.isna()
-    if np.any(no_nan):
-        add_with_pvalue('subreddit-w-production', 
-                        *scipy.stats.pearsonr(subreddit_scores.w[no_nan],
-                             subreddit_scores.production_score[no_nan]))
-    else:
-        add_with_pvalue('subreddit-w-production', np.nan, np.nan)
-    
     return exogen_evals

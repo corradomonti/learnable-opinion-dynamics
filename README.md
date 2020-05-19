@@ -15,7 +15,7 @@ Here you will find instructions about (i) using the algorithm we designed (ii) o
 
 ## Model implementation
 
-In order to use our model, we provide [our implementation in `src/model`](tree/master/src/model). To install it, clone this repo, install the dependencies, and install our model:
+In order to use our model, we provide [our implementation in `src/model`](src/model). To install it, clone this repo, install the dependencies, and install our model:
 
 ```
 git clone https://github.com/corradomonti/learnable-opinion-dynamics.git
@@ -47,7 +47,7 @@ For instance, to use it on a simple graph, with 3 nodes, 2 features and 2 time s
 
 ## Provided data set
 
-[In `data/reddit`, we provide the Reddit data set we gathered.](tree/master/data/reddit)
+[In `data/reddit`, we provide the Reddit data set we gathered.](data/reddit)
 All the data files are TSV compressed with `bz2` and can be easily opened with pandas.
 Please note that the input files (`edges_user.tsv.bz2`, `edges_feature.tsv.bz2`) do not have a header. To parse them you can also use the code we provide in `src/experiments/reddit.py`.
 
@@ -67,7 +67,7 @@ Our validation data is:
 
 ## Reproducibility
 
-In order to reproduce our experiments, we provide [our scripts in `src/experiments`](tree/master/src/experiments). They need a larger set of dependencies, listed in `src/experiments/requirements.txt`. In particular, we use [MLflow](https://github.com/mlflow/mlflow) to organize parameters and experiment results. To run both sets of experiments, do:
+In order to reproduce our experiments, we provide [our scripts in `src/experiments`](src/experiments). They need a larger set of dependencies, listed in `src/experiments/requirements.txt`. In particular, we use [MLflow](https://github.com/mlflow/mlflow) to organize parameters and experiment results. To run both sets of experiments, do:
 
 ```
 cd src/experiments/

@@ -15,7 +15,7 @@ Here you will find instructions about (i) using the algorithm we designed (ii) o
 
 ## Model implementation
 
-In order to use our model, we provide [our implementation in `src/model`](src/model). To install it, clone this repo, install the dependencies, and install our model:
+In order to use our model, we provide [our implementation in `src/model`](src/model). To install it, clone this repo, install the dependencies, and then our model:
 
 ```
 git clone https://github.com/corradomonti/learnable-opinion-dynamics.git
@@ -24,13 +24,13 @@ pip install -r requirements.txt
 pip install src
 ```
 
-Then you can import it into Python with:
+You can then use it in Python:
 
 ```
 >>> from model import learn_opinion_dynamics
 ```
 
-Check its documentation with:
+Check its documentation [online](http://corradomonti.github.io/learnable-opinion-dynamics) or with:
 
 ```
 >>> help(learn_opinion_dynamics)
@@ -72,9 +72,9 @@ In order to reproduce our experiments, we provide [our scripts in `src/experimen
 ```
 cd src/experiments/
 pip install -r requirements.txt
-mlflow ui &
+mlflow ui --port 8765 &
 python experiments-synthetic.py
 python experiments-reddit.py
 ```
 
-Then, you can use the MLflow User Interface to inspect the results of each experiment as they are produced.
+Then, you can use the MLflow User Interface at `localhost:8765` to inspect the results of each experiment as they are produced.

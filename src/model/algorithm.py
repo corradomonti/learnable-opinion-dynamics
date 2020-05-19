@@ -118,7 +118,7 @@ def em_step(graph, node_features, signs_until_t, Q, t, x_0=None, w=None, sigma=N
                 return x_0, w, sigma, model.X.eval(), signs, model.alpha.eval(), check.iteration, eval_results
         
 def learn_opinion_dynamics(N, Q, T, u_v_t_weights, v_a_t_weights, num_epochs=2, num_restarts=1,
-    alpha_clip_0=None, **hyperparameters):
+    alpha_clip_0=0.4, **hyperparameters):
     """
     Iterative EM algorithm to find opinions and signs, given a temporal interaction graph and
     a temporal bipartite node-feature graph.
@@ -140,7 +140,7 @@ def learn_opinion_dynamics(N, Q, T, u_v_t_weights, v_a_t_weights, num_epochs=2, 
         
         num_epochs (int, optional): The number of epochs for training.
         num_restarts (int, optional): Number of multiple restarts.
-        alpha_clip_0 (int, optional): Change the clipping value for alpha_t only for t=0 in the first epoch.
+        alpha_clip_0 (float, optional): Change the clipping value for alpha_t only for t=0 in the first epoch.
         **hyperparameters: all other keyword arguments are passed to `em_step(..)` as hyperparameters.
 
     Returns:

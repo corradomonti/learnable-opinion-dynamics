@@ -87,7 +87,7 @@ def build_alpha_t(x_t, N, alpha_clip, consensus_threshold, backfire_threshold):
 
 def build_tf_model(N, Q, adjacency_indices_iterator, adjacency_values_iterator, signs_iterator,
             active_nodes_vector,
-            consensus_threshold=0.25, backfire_threshold=1,
+            consensus_threshold=0.6, backfire_threshold=1.2,
             link_sharpness=16, feature_sharpness=8, mu_pos=0.001, mu_neg=0.001,
             alpha_clip=0.05, sigma_prior_p=8., sigma_prior_q=8., initial_range=0.001,
             fixed_features=None):

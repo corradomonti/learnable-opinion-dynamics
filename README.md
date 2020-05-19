@@ -73,8 +73,8 @@ In order to reproduce our experiments, we provide [our scripts in `src/experimen
 cd src/experiments/
 pip install -r requirements.txt
 mlflow ui --port 8765 &
-python experiments-synthetic.py
-python experiments-reddit.py
+python experiments_synthetic.py
+python experiments_reddit.py
 ```
 
 Then, you can use the MLflow User Interface at `localhost:8765` to inspect the results of each experiment as they are produced.

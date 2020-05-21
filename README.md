@@ -21,7 +21,7 @@ In order to use our model, we provide [our implementation in `src/model`](src/mo
 git clone https://github.com/corradomonti/learnable-opinion-dynamics.git
 cd learnable-opinion-dynamics
 pip install -r requirements.txt
-pip install src
+pip install src/
 ```
 
 You can then use it in Python:

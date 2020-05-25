@@ -48,12 +48,10 @@ For instance, to use it on a simple graph, with 3 nodes, 2 features and 2 time s
 ## Provided data set
 
 [In `data/reddit`, we provide the Reddit data set we gathered.](data/reddit)
-All the data files are TSV compressed with `bz2` and can be easily opened with pandas.
-Please note that the input files (`edges_user.tsv.bz2`, `edges_feature.tsv.bz2`) do not have a header. To parse them you can also use the code we provide in `src/experiments/reddit.py`.
 
 To build this data, we consider the 51 subreddits most similar to `r/politics` according to [this](https://www.shorttails.io/interactive-map-of-reddit-and-subreddit-similarity-calculator); the time stamps are the months between January 2008 and December 2017; for the users, we consider only those posting a minimum of 10 comments per month on r/politics for at least half of the considered months, which gives us 375 users.
 
-Our input is:
+Our input files are:
 
 - `edges_user.tsv.bz2` contains the interactions among considered users. Each row (t, u, v, w) indicates that user v replied to user u during time step t, for w times.
 
@@ -64,6 +62,15 @@ Our validation data is:
 - `feature_scores.tsv.bz2` contains the summary statistics for scores received by each user on each subreddit in each timestep. Specifically, it contains the sum of positive scores, the number of positively scored comments, the sum of negative scores, and the number of negatively scored comments.
 
 - `interaction_scores.tsv.bz2` contains data about each interaction between considered users.
+
+All the data files are TSV compressed with `bz2` and can be easily opened with pandas:
+
+```
+>>> pd.read_csv("edges_user.tsv.bz2", names=("yearmonth", "parent", "author", "count"), header=None, sep='\t')
+>>> pd.read_csv("edges_feature.tsv.bz2", names=("yearmonth", "author", "subreddit", "count"), header=None, sep='\t')
+>>> pd.read_csv("data/reddit/feature_scores.tsv.bz2", sep='\t')
+>>> pd.read_csv("data/reddit/interaction_scores.tsv.bz2", sep='\t')
+```
 
 ## Reproducibility
 

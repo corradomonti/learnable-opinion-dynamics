@@ -68,8 +68,8 @@ All the data files are TSV compressed with `bz2` and can be easily opened with p
 ```
 >>> pd.read_csv("edges_user.tsv.bz2", names=("yearmonth", "parent", "author", "count"), header=None, sep='\t')
 >>> pd.read_csv("edges_feature.tsv.bz2", names=("yearmonth", "author", "subreddit", "count"), header=None, sep='\t')
->>> pd.read_csv("data/reddit/feature_scores.tsv.bz2", sep='\t')
->>> pd.read_csv("data/reddit/interaction_scores.tsv.bz2", sep='\t')
+>>> pd.read_csv("feature_scores.tsv.bz2", sep='\t')
+>>> pd.read_csv("interaction_scores.tsv.bz2", sep='\t')
 ```
 
 ## Reproducibility

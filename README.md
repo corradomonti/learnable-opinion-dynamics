@@ -15,7 +15,7 @@ Here you will find instructions about (i) using the algorithm we designed (ii) o
 
 ## Model implementation
 
-In order to use our model, we provide [our implementation in `src/model`](src/model). To install it, clone this repo, install the dependencies, and then our model:
+In order to use our model, we provide [our implementation in `src/model`](src/model). To use our model on your data, just clone this repo, install the dependencies, and then our model:
 
 ```
 git clone https://github.com/corradomonti/learnable-opinion-dynamics.git
